@@ -1,5 +1,6 @@
 import CreateCoworking from './CreateCoworking';
-import './App.css';
+import './App.css'
+import ListCoworkings from './ListCoworkings';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <header>
         <>
           <CreateCoworking />
+          <ListCoworkings />
         </>
       </header>
     </div>
