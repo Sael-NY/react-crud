@@ -54,7 +54,7 @@ const ListCoworkings = () => {
     }
 
     const handleFilterClickSaintEtienne = () => {
-        setFilter("Saint-Etienne (miskine")
+        setFilter("Saint-Etienne (miskine)")
     }
 
 
@@ -64,7 +64,7 @@ const ListCoworkings = () => {
     })
     return (
         <section>
-            <h2>Les listes des viilles</h2>
+            <h2>Les listes des villes</h2>
             <button onClick={handleFilterClickNewYork}>New York</button>
             <button onClick={handleFilterClickToronto}>Toronto</button>
             <button onClick={handleFilterClickLosAngeles}>Los Angeles</button>

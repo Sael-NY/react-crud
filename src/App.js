@@ -1,6 +1,7 @@
 import CreateCoworking from './CreateCoworking';
 import './App.css'
 import ListCoworkings from './ListCoworkings';
+import ContactForm from './ContactForm';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <>
           <CreateCoworking />
           <ListCoworkings />
+          <ContactForm />
         </>
       </header>
     </div>
