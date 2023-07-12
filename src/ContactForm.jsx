@@ -41,10 +41,13 @@ const ContactForm = () => {
                 <textarea name="message" />
                 <button type="submit">Envoyer</button>
 
-                <p>
-                    C'est bien !
-                    {monContact.firstName} {monContact.lastName}
-                </p>
+                {monContact.email !== "" && (
+                    <p>
+                        Vos infos :{" "}
+                        {monContact.firstName} {monContact.lastName} : {monContact.email} "
+                        {monContact.message}"
+                    </p>
+                )}
             </form>
         </section>
     )

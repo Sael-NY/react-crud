@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ShowCoworking from "./ShowCoworking";
 
 const ListCoworkings = () => {
     const coworkings = [
@@ -12,7 +13,7 @@ const ListCoworkings = () => {
         {
             id: 2,
             name: "Coworking 2",
-            address: "Toronto",
+            address: "Chicago",
             phone: "123456789",
             img: "https://picsum.photos/200/300",
         },
@@ -33,54 +34,49 @@ const ListCoworkings = () => {
         {
             id: 5,
             name: "Coworking 5",
-            address: "Saint-Etienne (miskine)",
+            address: "Washington",
             phone: "123456789",
             img: "https://picsum.photos/200/300",
         },
     ];
 
-    const [filter, setFilter] = useState("New York")
+    // on a ajouté un bouton sous chaque coworking pour le supprimer
+    // au click sur le bouton, on récupère l'id du coworking cliqué
+    // on fait un appel fetch pour supprimer le coworking
 
-    const handleFilterClickNewYork = () => {
-        setFilter("New York")
-    }
+    const [city, setCity] = useState("New York");
 
-    const handleFilterClickToronto = () => {
-        setFilter("Toronto")
-    }
-
-    const handleFilterClickLosAngeles = () => {
-        setFilter("Los Angeles")
-    }
-
-    const handleFilterClickSaintEtienne = () => {
-        setFilter("Saint-Etienne (miskine)")
-    }
+    const handleClick = (value) => {
+        setCity(value);
+    };
 
 
 
-    const filteredCoworkings = coworkings.filter((coworking) => {
-        return coworking.address === filter;
-    })
+    const coworkingsFiltered = coworkings.filter((coworking) => {
+        if (city === null) {
+            return true;
+        }
+
+        return coworking.address === city;
+    });
+
     return (
         <section>
-            <h2>Les listes des villes</h2>
-            <button onClick={handleFilterClickNewYork}>New York</button>
-            <button onClick={handleFilterClickToronto}>Toronto</button>
-            <button onClick={handleFilterClickLosAngeles}>Los Angeles</button>
-            <button onClick={handleFilterClickSaintEtienne}>Saint Etienne(miskine)</button>
+            <h2>Liste des coworkings</h2>
 
+            <button onClick={() => handleClick("New York")}>Bordeaux</button>
+            <button onClick={() => handleClick("Chicago")}>Mérignac</button>
+            <button onClick={() => handleClick("Los Angeles")}>Lormont</button>
+            <button onClick={() => handleClick("Washington")}>Eysines</button>
 
-            {filteredCoworkings.map((coworking) => {
+            <button onClick={() => handleClick(null)}>Tous</button>
+
+            {coworkingsFiltered.map((coworking) => {
                 return (
-                    <article key={coworking.id}>
-                        <h3>{coworking.name}</h3>
-                        <p>{coworking.address}</p>
-                        <p>{coworking.phone}</p>
-                        <img src={coworking.img} alt={coworking.name} />
+                    <article>
+                        <ShowCoworking coworking={coworking} />
                     </article>
-                )
-
+                );
             })}
         </section>
     );
