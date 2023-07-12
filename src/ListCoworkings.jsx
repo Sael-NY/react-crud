@@ -9,15 +9,17 @@ const ListCoworkings = () => {
     const fetchCoworkings = async () => {
         // je fais un appel fetch sur mon api
         if (coworkings.length === 0) {
-            const coworkingsResponse = await fetch("/coworkings.json");
-            const coworkingsData = await coworkingsResponse.json();
+            setTimeout(async () => {
+                const coworkingsResponse = await fetch("/coworkings.json");
+                const coworkingsData = await coworkingsResponse.json();
 
-            // si la variable coworkings est vide
-            // je stocke dans la variable coworkings
-            // les coworkings récupérés depuis l'api
-            // ça provoque un rechargement du composant
+                // si la variable coworkings est vide
+                // je stocke dans la variable coworkings
+                // les coworkings récupérés depuis l'api
+                // ça provoque un rechargement du composant
 
-            setCoworkings(coworkingsData);
+                setCoworkings(coworkingsData);
+            }, 1000);
         }
     };
 
@@ -51,13 +53,17 @@ const ListCoworkings = () => {
 
             <button onClick={() => handleClick(null)}>Tous</button>
 
-            {coworkingsFiltered.map((coworking) => {
-                return (
-                    <article>
-                        <ShowCoworking coworking={coworking} />
-                    </article>
-                );
-            })}
+            {coworkingsFiltered.length === 0 ? (
+                <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            ) :
+
+                coworkingsFiltered.map((coworking) => {
+                    return (
+                        <article>
+                            <ShowCoworking coworking={coworking} />
+                        </article>
+                    );
+                })}
         </section>
     );
 };
