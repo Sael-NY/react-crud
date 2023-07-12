@@ -2,47 +2,27 @@ import { useState } from "react";
 import ShowCoworking from "./ShowCoworking";
 
 const ListCoworkings = () => {
-    const coworkings = [
-        {
-            id: 1,
-            name: "Coworking 1",
-            address: "New York",
-            phone: "123456789",
-            img: "https://picsum.photos/200/300",
-        },
-        {
-            id: 2,
-            name: "Coworking 2",
-            address: "Chicago",
-            phone: "123456789",
-            img: "https://picsum.photos/200/300",
-        },
-        {
-            id: 3,
-            name: "Coworking 3",
-            address: "New York",
-            phone: "123456789",
-            img: "https://picsum.photos/200/300",
-        },
-        {
-            id: 4,
-            name: "Coworking 4",
-            address: "Los Angeles",
-            phone: "123456789",
-            img: "https://picsum.photos/200/300",
-        },
-        {
-            id: 5,
-            name: "Coworking 5",
-            address: "Washington",
-            phone: "123456789",
-            img: "https://picsum.photos/200/300",
-        },
-    ];
+    const [coworkings, setCoworkings] = useState([]);
 
-    // on a ajouté un bouton sous chaque coworking pour le supprimer
-    // au click sur le bouton, on récupère l'id du coworking cliqué
-    // on fait un appel fetch pour supprimer le coworking
+    // je créé une fonction qui va faire un appel fetch
+    // sur mon api
+    const fetchCoworkings = async () => {
+        // je fais un appel fetch sur mon api
+        if (coworkings.length === 0) {
+            const coworkingsResponse = await fetch("/coworkings.json");
+            const coworkingsData = await coworkingsResponse.json();
+
+            // si la variable coworkings est vide
+            // je stocke dans la variable coworkings
+            // les coworkings récupérés depuis l'api
+            // ça provoque un rechargement du composant
+
+            setCoworkings(coworkingsData);
+        }
+    };
+
+
+    fetchCoworkings()
 
     const [city, setCity] = useState("New York");
 
